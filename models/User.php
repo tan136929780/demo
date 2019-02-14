@@ -27,7 +27,6 @@ class User extends BaseModel implements \yii\web\IdentityInterface
         ],
     ];
 
-
     /**
      * {@inheritdoc}
      */
