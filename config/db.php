@@ -7,6 +7,7 @@ return [
         'username' => 'root',
         'password' => '123456',
         'charset' => 'utf8',
+//        'charset' => 'utf8',
 //        'slaveConfig' => [
 //            'username' => 'root',
 //            'password' => '',
