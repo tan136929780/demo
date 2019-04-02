@@ -15,7 +15,7 @@ class User extends Users implements \yii\web\IdentityInterface
         return static::findOne([
             'id'     => $id,
             'status' => Constant::TYPE_ACTIVE
-        ]);;
+        ]);
     }
 
     /**
