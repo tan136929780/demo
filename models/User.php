@@ -2,37 +2,20 @@
 
 namespace app\models;
 
-class User extends BaseModel implements \yii\web\IdentityInterface
+use Yii;
+use app\components\Constant;
+
+class User extends Users implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne([
+            'id'     => $id,
+            'status' => Constant::TYPE_ACTIVE
+        ]);;
     }
 
     /**
@@ -40,12 +23,11 @@ class User extends BaseModel implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
+//        foreach (self::$users as $user) {
+//            if ($user['accessToken'] === $token) {
+//                return new static($user);
+//            }
+//        }
         return null;
     }
 
@@ -57,13 +39,10 @@ class User extends BaseModel implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne([
+            'user_code' => $username,
+            'status'    => Constant::TYPE_ACTIVE
+        ]);
     }
 
     /**
@@ -98,6 +77,60 @@ class User extends BaseModel implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return \Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * Name: getMenus
+     * Desc: 获取用户菜单选项
+     * User: tanxianchen
+     * Date: 2019-02-20
+     * @return mixed
+     */
+    public function getMenus()
+    {
+        $key = Constant::USER_MENU_CACHE_KEY;
+        //Get user menus from session
+        $menus = Yii::$app->getSession()
+                          ->get($key);
+        if (empty($menus)) {
+            //Get user menus from database
+            $privileges = $this->getRolePrivileges();
+            function queryPrivilege($pid = 0, $depth = 0, $privileges = [])
+            {
+                $items = Privilege::find()
+                                  ->select([
+                                      'id',
+                                      'pid',
+                                      'name',
+                                      'controller',
+                                      'action',
+                                      'params',
+                                      'depth'
+                                  ])
+                                  ->where([
+                                      'id'      => $privileges,
+                                      'pid'     => $pid,
+                                      'deleted' => 'N',
+                                      'depth'   => $depth,
+                                      'menu'    => 'Y'
+                                  ])
+                                  ->orderBy('sequence')
+                                  ->asArray()
+                                  ->all();
+                if (!empty($items)) {
+                    foreach ($items as $k => $item) {
+                        $items[$k]['items'] = queryPrivilege($item['id'], intval($item['depth']) + 1, $privileges);
+                    }
+                }
+                return $items;
+            }
+
+            $menus = queryPrivilege(0, 1, $privileges);
+            //Set user menus session
+            Yii::$app->getSession()
+                     ->set($key, $menus);
+        }
+        return $menus;
     }
 }

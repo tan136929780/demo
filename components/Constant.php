@@ -5,6 +5,7 @@
  * Date: 2019-02-20
  * Time: 14:18
  */
+
 namespace app\components;
 
 /**
@@ -17,18 +18,25 @@ namespace app\components;
  */
 class Constant
 {
-    const USER_TIME_ZONE_KEY = 'USER_TIME_ZONE';
-    const CACHE_KEY_SDFCODE = 'SDFCODE_CACHE_LIST';
-    const CACHE_KEY_COUNTRY_WARRANTY = 'COUNTRY_WARRANTY_CACHE_LIST';
-
     //Active Status
     const TYPE_INACTIVE = 0;
-    const TYPE_ACTIVE = 1;
+    const TYPE_ACTIVE   = 1;
 
-    const STATUS_ENABLE = self::TYPE_ACTIVE; // ./models/BaseModel.php:19
-    const STATUS_DISABLE = self::TYPE_INACTIVE; // ./models/BaseModel.php:18
+    // 用户类别
+    const ROLE_TYPE_ADMIN       = 'Admin';
+    const ROLE_TYPE_TYPE_NORMAL = 'Normal';
+    const TYPE_NORMAL           = 1;
+    const TYPE_VIP              = 2;
 
     const STATUS_YES = 'Y'; // 通用yes
-    const STATUS_NO = 'N'; // 通用no
+    const STATUS_NO  = 'N'; // 通用no
+
+    const STATUS_DISABLE = 0;
+    const STATUS_ENABLE  = 1;
+
+    const USER_ROLE_TYPE_KEY       = 'user_role_type';
+    const USER_ROLE_CACHE_KEY      = 'USER_ROLE_CACHE';
+    const USER_PRIVILEGE_CACHE_KEY = 'USER_PRIVILEGE_CACHE';
+    const USER_MENU_CACHE_KEY      = 'USER_MENU_CACHE';
 
 }

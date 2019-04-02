@@ -33,8 +33,8 @@ class BaseModel extends ActiveRecord
     public function status()
     {
         return [
-            Constant::STATUS_ENABLE => Yii::t('app', 'Active')/*'有效'*/,
-            Constant::STATUS_DISABLE => Yii::t('app', 'Inactive')/*'冻结'*/,
+            Constant::TYPE_ACTIVE => Yii::t('app', '激活'),
+            Constant::TYPE_INACTIVE => Yii::t('app', '禁用'),
         ];
     }
 

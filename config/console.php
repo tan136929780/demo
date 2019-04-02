@@ -32,6 +32,7 @@ $config = [
         ],
         'db' => $db['mysql'],
         'redis' => $db['redis'],
+        'session' => $db['session']
     ],
     'params' => $params,
     /*

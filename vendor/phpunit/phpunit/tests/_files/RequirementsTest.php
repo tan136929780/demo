@@ -80,16 +80,7 @@ class RequirementsTest extends TestCase
     }
 
     /**
-     * @requires function testFunc2
-     * @see https://github.com/sebastianbergmann/phpunit/issues/3459
-     */
-    public function testRequiresFunctionWithDigit()
-    {
-    }
-
-    /**
-     * @requires OS SunOS
-     * @requires OSFAMILY Solaris
+     * @requires OS Linux
      */
     public function testEleven()
     {
@@ -100,9 +91,9 @@ class RequirementsTest extends TestCase
      * @requires PHPUnit 9-dev
      * @requires OS DOESNOTEXIST
      * @requires function testFuncOne
-     * @requires function testFunc2
+     * @requires function testFuncTwo
      * @requires extension testExtOne
-     * @requires extension testExt2
+     * @requires extension testExtTwo
      * @requires extension testExtThree 2.0
      */
     public function testAllPossibleRequirements()
@@ -155,13 +146,6 @@ class RequirementsTest extends TestCase
      * @requires OS DOESNOTEXIST
      */
     public function testAlwaysSkip3()
-    {
-    }
-
-    /**
-     * @requires OSFAMILY DOESNOTEXIST
-     */
-    public function testAlwaysSkip4()
     {
     }
 

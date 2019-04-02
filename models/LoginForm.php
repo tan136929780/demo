@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Constant;
 use Yii;
 use yii\base\Model;
 
@@ -60,7 +61,18 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0)) {
+                $user = Users::currentUser();
+
+                $this->setUserSession($user);
+
+                //把用户的角色保存在session中
+                if (isset($this->getUser()->role)) {
+                    Yii::$app->getSession()->set(Constant::USER_ROLE_TYPE_KEY, $this->getUser()->role->roleType);
+                }
+                User::updateAll(['session_token' => '1'], ['id' => $user->id]);
+            }
+            return true;
         }
         return false;
     }
@@ -77,5 +89,20 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+    }
+
+    public function setUserSession($user)
+    {
+        Yii::$app->session['user'] = [
+            'user_code' => $user->user_code,
+            'name' => $user->name,
+            'phone' => $user->phone,
+            'email' => $user->email,
+            'province' => $user->province,
+            'city' => $user->city,
+            'address' => $user->address,
+            'post_code' => $user->post_code,
+            'category' => $user->category,
+        ];
     }
 }

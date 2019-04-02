@@ -1,0 +1,22 @@
+{
+    "name": "webtoucher/yii2-commands",
+    "description": "Yii 2 extension wrapper for console controllers.",
+    "keywords": ["yii", "extension", "command", "console"],
+    "homepage": "https://github.com/webtoucher/yii2-commands",
+    "type": "yii-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Alexey Kuznetsov",
+            "email": "mirakuru@webtoucher.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "webtoucher\\commands\\": ""
+        }
+    }
+}

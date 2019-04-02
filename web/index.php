@@ -13,6 +13,7 @@ defined('DEFAULT_DATE_ZONE') || define('DEFAULT_DATE_ZONE', 'Etc/GMT');
 // 页面显示默认时区 : 中华人民共和国时间
 defined('DEFAULT_LOCAL_DATE_ZONE') || define('DEFAULT_LOCAL_DATE_ZONE', 'PRC');
 
+require(__DIR__ . '/../helpers/func.php');
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 

@@ -7,8 +7,8 @@
 
 namespace app\commands;
 
+use app\models\Users;
 use yii\console\Controller;
-use yii\console\ExitCode;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -21,14 +21,14 @@ use yii\console\ExitCode;
 class HelloController extends Controller
 {
     /**
-     * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
-     * @return int Exit code
+     * Name: actionInitPassWord
+     * Desc: init user passWord for admin
+     * User: tanxianchen
+     * Date: 2019-02-20
+     * @return string
      */
-    public function actionIndex($message = 'hello world')
+    public function actionInitPassWord($id = 1)
     {
-        echo $message . "\n";
-
-        return ExitCode::OK;
+        Users::updateAll(['password' => '$2y$13$Y/5FeLoUpFe4zBBuRhNo9.4w3IFAKXcPRgTUW.hmwGoLSIV8F3Rci'], ['id' => $id]);
     }
 }

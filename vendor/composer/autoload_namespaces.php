@@ -7,7 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'PhpAmqpLib' => array($vendorDir . '/php-amqplib/php-amqplib'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
+    'Goodby\\CSV' => array($vendorDir . '/goodby/csv/src'),
+    'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
     'Codeception\\' => array($vendorDir . '/codeception/specify/src'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
