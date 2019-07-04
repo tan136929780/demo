@@ -1,0 +1,23 @@
+{
+  "name": "c006/yii2-alerts",
+  "description": "Display simple alert message(s) on page",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "widgets",
+    "alert"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jon Chambers",
+      "email": "jchambers.dev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "c006\\alerts\\": ""
+    }
+  }
+}

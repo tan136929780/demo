@@ -1,0 +1,118 @@
+/************************************
+Fonts / Colors
+*/
+$font-alert : Arial, Helvetica, Sans-serif;
+
+$bg-danger : #D9C3C4;
+$color-danger : #8E0018;
+
+$bg-warning : #DCD9BA;
+$color-warning : #DE8D00;
+
+$bg-info : #B3CBD6;
+$color-info : #0077AE;
+
+$bg-success : #CAEACA;
+$color-success : #09AE00;
+
+/************************************
+Container
+*/
+.c006-alert {
+  display               : block;
+  position              : relative;
+  margin                : 10px 0;
+  padding               : 10px;
+  -webkit-border-radius : 5px;
+  -moz-border-radius    : 5px;
+  border-radius         : 5px;
+
+  .message {
+    color       : inherit;
+    font-size   : 1.2em;
+    line-height : 1.5em;
+    font-family : $font-alert;
+  }
+
+  .close {
+    display    : inline-block;
+    position   : absolute;
+    right      : 10px;
+    top        : 5px;
+    color      : inherit;
+    background : inherit;
+    font-size  : 1em;
+    cursor     : pointer;
+  }
+
+}
+
+/************************************
+Danger
+*/
+.alert-danger {
+  background-color : $bg-danger;
+  border           : 1px solid $color-danger;
+  color            : $color-danger;
+}
+
+/************************************
+Warning
+*/
+.alert-warning {
+  background-color : $bg-warning;
+  border           : 1px solid $color-warning;
+  color            : $color-warning;
+}
+
+/************************************
+Info
+*/
+.alert-info {
+  background-color : $bg-info;
+  border           : 1px solid $color-info;
+  color            : $color-info;
+}
+
+/************************************
+Success
+*/
+.alert-success {
+  background-color : $bg-success;
+  border           : 1px solid $color-success;
+  color            : $color-success;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
